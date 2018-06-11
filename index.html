@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <body>
+      <h1>Hello World!</h1>
+      <!-- All of the Node.js APIs are available in this renderer process. -->
+      We are using Node.js
+      <script>document.write(process.versions.node)</script>,
+      <br />      <br />
+      Chromium
+      <script>document.write(process.versions.chrome)</script>,
+      <br />      <br />
+      and Electron
+      <script>document.write(process.versions.electron)</script>.
+      <br /><br />
+
+      <button id="search-button" type="submit" aria-describedby="number-found-items">
+          <span class="symbol-label">Display random numbers</span>
+      </button>
+
+      <div id="number-found-items" aria-live="polite" aria-atomic="false"  >
+          <span id="number-found">0</span>
+      </div>
+
+      <script>
+          var numberFound = document.querySelector('#number-found');
+          document.querySelector('#search-button').onclick = btnClick;
+
+        function btnClick() {
+              event.preventDefault();
+              window.setInterval(function () {
+                  var value = getRandomInt(0, 100);
+                  updateNumberFound(value);
+              }, 1000);
+          }
+
+        function getRandomInt(min, max) {
+              return Math.floor(Math.random() * (max - min + 1)) + min;
+          }
+
+          function updateNumberFound(value) {
+              numberFound.innerText = value || 0;
+          }
+      </script>
+  </body>
+</html>
